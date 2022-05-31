@@ -10,10 +10,10 @@ jobs:
       - uses: actions/checkout@v3
       - name: Getting results
         run: |
-          results = "$(cat result.json)"
+          RESULTS="$(< result.json)"
       - name: Dispatch initiating repository event
         run: |
           curl -X POST https://api.github.com/repos/Macrostrata/Macrostrata/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.TOKEN }} \
-          --data '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "result": "'"$results"'" }}'
+          --data '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "result": "'"$RESULTS"'" }}'
