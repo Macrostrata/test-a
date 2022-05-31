@@ -13,9 +13,7 @@ jobs:
           tr -d '\n' < result.json > result_1.json
           tr -d '\r' < result_1.json > result_2.json
           RESULTS="$(< result_2.json)"
-          echo '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "result": '"$RESULTS"' }}'
           curl -X POST https://api.github.com/repos/Macrostrata/Macrostrata/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.TOKEN }} \
           --data '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "result": '"$RESULTS"' }}'
-# --data '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'", "result": "'"$RESULTS"'" }}'
