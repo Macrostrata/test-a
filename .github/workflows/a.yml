@@ -1,19 +1,16 @@
-name: Remote Dispatch Action Initiator
+name: Dispatch Results
 
 on:
   push:
 
 jobs:
-  ping-pong:
+  result-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Getting results
-        run: |
-          RESULTS="$(< result.json)"
-          echo $RESULTS
       - name: Dispatch initiating repository event
         run: |
+          RESULTS="$(< result.json)"
           curl -X POST https://api.github.com/repos/Macrostrata/Macrostrata/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.TOKEN }} \
