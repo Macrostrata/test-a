@@ -11,6 +11,7 @@ jobs:
       - name: Getting results
         run: |
           RESULTS="$(< result.json)"
+          echo $RESULTS
       - name: Dispatch initiating repository event
         run: |
           curl -X POST https://api.github.com/repos/Macrostrata/Macrostrata/dispatches \
