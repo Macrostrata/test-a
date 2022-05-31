@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Getting results
         run: |
           results = "$(cat result.json)"
       - name: Dispatch initiating repository event
